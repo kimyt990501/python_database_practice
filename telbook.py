@@ -71,6 +71,7 @@ while True:
    print('4. Print All')
    print('5. Save')
    print('6. Finish')
+   
    choice = int(input('input: '))
    print("\n")
    if choice == 1 :
