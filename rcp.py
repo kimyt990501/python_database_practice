@@ -53,18 +53,36 @@ def makeAccount(id):
     zero = 0
     data = (id, zero, zero, zero, zero, zero)
     cursor.execute(query, data)
+    connection.commit()
     print("Account Made Complete\n")
 
 def printInfo():
     cursor.execute("SELECT * FROM `player_info`")
     print("플페이어 정보를 출력합니다\n")
-    print("ID\t\t Wins\t Loses\t Draws\t Gold\t Plays")
-    print("--------------------------------------------------------")
+    print("ID\t\tWins\tLoses\tDraws\tGold\tPlays")
+    print("----------------------------------------------------------------")
   
     row = cursor.fetchone()
     while row:
-         print("%s\t\t %d\t %d\t %d\t %d\t %d" % (row['id'], row['win'], row['lose'], row['draw'], row['gold'], row['plays']))
+         print("%s\t\t%d\t%d\t%d\t%d\t%d" % (row['id'], row['win'], row['lose'], row['draw'], row['gold'], row['plays']))
          row = cursor.fetchone()
+
+def saveInfo(Ob):
+    query = "UPDATE player_info SET win = %s, lose = %s, draw = %s, gold = %s, plays = %s WHERE id = %s"
+    sql = """
+    UPDATE player_info
+    SET 
+        win = %s,
+        lose = %s,
+        draw = %s,
+        gold = %s,
+        plays = %s,
+    WHERE
+        id = %s
+        """
+    data = (Ob.win, Ob.lose, Ob.draw, Ob.gold, Ob.plays, Ob.id)
+    cursor.execute(query, data)
+    connection.commit()
 
 # Function Part (Game)
 
@@ -94,12 +112,14 @@ def determine_winner(user_choice, computer_choice):
         w += 2
         return "컴퓨터의 승리", 2
 
-def play_game():
-    user_gold = 100
+def play_game(ob_p, ob_com):
+    user_gold = ob_p.gold + 100
     computer_gold = 100
+    plays = ob_p.plays
     rounds = 3
 
     for _ in range(rounds):
+        plays += 1
         global w
         print(f"\n현재 골드: 당신({user_gold}원) vs 컴퓨터({computer_gold}원)")
 
@@ -119,21 +139,24 @@ def play_game():
         result, multiplier = determine_winner(user_choice, computer_choice)
 
         print(result)
-        # 게임 결과에 따라 골드 조정
+        # 게임 결과에 따라 골드 조정 및 플레이어 객체의 승, 패 무승부 수 조정
         if w == 1:
             user_gold += user_bet * multiplier
+            ob_p.win += 1
         elif w == 2:
+            ob_p.lose += 1
             computer_gold += computer_bet * multiplier
+        else:
+            ob_p.draw += 1
 
-        # 한 명이라도 골드가 0이 되면 게임 종료
-        if user_gold <= 0 or computer_gold <= 0:
-
-            print("\n최종 결과:")
-            print(f"당신의 골드: {user_gold}원")
-            print(f"컴퓨터의 골드: {computer_gold}원")
-
-            print("\n게임 종료!")
-            break
+    ob_p.gold = user_gold
+    ob_p.plays = plays
+    print("\n최종 결과:")
+    print(f"당신의 골드: {user_gold}원")
+    print(f"컴퓨터의 골드: {computer_gold}원")
+    print("\n게임 종료!")
+    saveInfo(ob_p)
+    
 
 # Main Part
 print("Rock Scissor Paper Game Program\n")
@@ -143,17 +166,14 @@ a = 0
 global w
 
 while True:
-    print("\n\n1. New Game\
-          2. Load Game\
-          3. Print Info\
-          4. Exit Game\n")
+    print("\n\n1. New Game\n2. Load Game\n3. Print Info\n4. Exit Game\n")
     choice = int(input("input: "))
     if choice == 1:
         new_id = input("Your New ID: ")
         makeAccount(new_id)
         inputInfo(player_1, new_id)
         a += 1
-        #break
+        break
     elif choice == 2:
         old_id = input("Your ID: ")
         inputInfo(player_1, old_id)
@@ -167,6 +187,8 @@ while True:
 # Game Part
 if a == 1:
     print("\nGame Start\n")
-    play_game()
+    play_game(player_1, com_1)
+    del player_1
+    del com_1
 else:
     print("\nShutting Down Program\n")
