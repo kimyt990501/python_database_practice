@@ -6,6 +6,9 @@
 ### 1. 전화번호 관리 프로그램
 - 말 그대로 간단한 전화번호 관리 프로그램이며 몇 가지 기능을 포함한다
 
+#### 파일 명
+telbook.py
+
 #### 개발환경
 - IDE: Visual Studio Code
 
@@ -28,6 +31,9 @@
 ### 2. 가위바위보 프로그램
 - 컴퓨터와 가위바위보를 하여 승부를 가리는 프로그램이다
 
+#### 파일 명
+RockPaperScissors.py
+
 #### 개발환경
 - IDE: Visual Studio Code
 
@@ -49,6 +55,10 @@
 ### 3. 데이터를 활용하여 서울의 미세먼지, 초미세먼지 농도 변화 분석하기 
 - 에어코리아에서 데이터를 다운 받아 전처리 후 그래프로 시각화하는 간단한 프로젝트
 
+#### 파일 명
+pm10_pm25_Seoul_2018_2022.ipynb
+PM10_PM25_Seoul_2018_2022_data.py
+
 #### 개발환경
 - IDE: Visual Studio Code, Jupyter Notebook
 
@@ -64,6 +74,10 @@
 
 ### 4. 데이터를 활용하여 역대 KBO 야구 팀들의 기록 분석하기
 - 스탯티즈 라는 사이트에서 KBO 야구 팀들의 데이터를 크롤링하여 불러와 분석을 진행하는 프로젝트
+
+#### 파일 명
+kbo_data_graph.ipynb
+kbo_data_mine.py
 
 #### 개발환경
 - IDE: Visual Studio Code
