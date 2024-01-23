@@ -78,6 +78,7 @@
 #### 파일 명
 - kbo_data_graph.ipynb
 - kbo_data_mine.py
+- linear_regression.py
 
 #### 개발환경
 - IDE: Visual Studio Code
