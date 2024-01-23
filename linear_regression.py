@@ -68,4 +68,18 @@ print("검증 데이터 점수 : {:.2f}".format(model_linear.score(X_test, y_tes
 
 # 회귀분석의 결정계수
 print('R2 : {:.2f}'.format(r2_score(y_test, y_pred)))
+
+# 안타수, 타점, 득점을 직접 입력 받아 타율 예측
+
+# 사용자로부터 입력 받기
+user_input_hits = int(input("안타수를 입력하세요 (대략 1300 ~ 2300): "))
+user_input_runs = int(input("득점을 입력하세요 (대략 400 ~ 900): "))
+user_input_rbi = int(input("타점을 입력하세요 (대략 400 ~ 800): "))
+
+# 입력된 값을 이용하여 타율 예측
+user_input_data = np.array([[user_input_runs, user_input_rbi, user_input_hits]])
+predicted_batting_average = model_linear.predict(user_input_data)
+
+# 결과 출력
+print(f"입력한 안타수, 득점, 타점에 대한 예측 타율: {predicted_batting_average[0][0]:.3f}")
 # %%
