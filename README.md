@@ -100,3 +100,24 @@
 - 아직 진행 중
 
 - 참고: <https://analyst-ggom-chi-kim.tistory.com/9>
+
+### 5. 역대 KBO 타자 데이터를 활용하여 데이터 분석하기
+- 스탯티즈 라는 사이트에서 KBO 타자 선수들의 데이터를 크롤링하여 불러와 분석을 진행하는 프로젝트
+
+#### 파일 명
+- kbo_hitter.py
+- kbo_hitter_crawling.py
+
+#### 개발환경
+- IDE: Visual Studio Code
+- Version: python 3.7
+
+#### 기술 스택
+- 언어: Python
+
+#### 절차
+- 스탯티즈에서 역대 kbo 각 시즌 30 순위 안에 들었던 타자 데이터를 크롤링하여 csv 파일로 저장
+- csv 파일을 불러와 하나의 데이터프레임으로 결합
+
+- 아직 진행 중
+
