@@ -1,3 +1,4 @@
+#%%
 import warnings
 import pandas as pd
 
@@ -12,3 +13,5 @@ for year in years:
     new = pd.concat([hitter_data, old], ignore_index=True)
     hitter_data = new
 print(hitter_data)
+
+# %%
