@@ -36,13 +36,13 @@ for j in range(3,414):
 samsung_whole_data = df[df['이름'].str.contains('삼성')]
 samsung_whole_data = samsung_whole_data.drop(['순'], axis = 1)
 
-samsung_whole_data = samsung_whole_data[['연도', '타율', '출루', '볼넷', '타점', '득점', '안타', '삼진', '도루', '홈런', 'WAR']]
+samsung_whole_data = samsung_whole_data[['연도', '타율', '출루', '볼넷', '타점', '득점', '안타', '삼진', '도루', '홈런', 'WAR', 'OPS']]
 samsung_whole_data = samsung_whole_data.sort_values(by = ['연도'], ascending=[True])
 samsung_data = samsung_whole_data.iloc[0:24]
 samsung_b = samsung_whole_data.iloc[24:43]
 samsung_classic_data = pd.concat([samsung_b, samsung_data], ignore_index= True)
 
-samsung_data = samsung_data.astype({'타율':'float', '출루':'float', '볼넷':'int', '타점':'int', '득점':'int', '안타':'int', '삼진':'int','도루':'int', '홈런':'int', 'WAR':'float'})
+samsung_data = samsung_data.astype({'타율':'float', '출루':'float', '볼넷':'int', '타점':'int', '득점':'int', '안타':'int', '삼진':'int','도루':'int', '홈런':'int', 'WAR':'float', 'OPS':'float'})
 samsung_classic_data['출루'] = samsung_classic_data['출루'].astype('float')
 
 # 롯데의 데이터 중 필요한 데이터만 불러오기 및 정제 후 연도 별로 정렬 (클래식 팀이므로 두가지 버전 존재)
@@ -118,12 +118,12 @@ sns.set_context('poster', font_scale = 1)
 
 plt.xticks(rotation=90)
 '''
-
+'''
 # 그래프 그리기 (산점도 그래프)
 plt.figure(figsize = (15,10))
 
 sns.scatterplot(x='볼넷', y='출루', data = samsung_data)
-
+'''
 # 상관분석_correlation analysis
 print(samsung_data[['볼넷', '출루']].corr())
 
