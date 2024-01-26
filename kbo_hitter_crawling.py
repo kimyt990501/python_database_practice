@@ -32,6 +32,17 @@ for year in range(1982, 2024):
                 temp3 = temp2.find_all("td")[i]
                 df.iloc[l,i] = temp3.get_text()
             l += 1
+    #df = df.insert(1, '연도', str(year))
+    df['연도'] = year
     # 만들어낸 데이터프레임을 csv 파일로 저장
     df.to_csv('C:\\Users\\user\\Desktop\\resources\\baseball_player\\kbo_hitter_data_' + str(year) + '.csv', index=None, encoding='euc-kr')
 
+# 저장해둔 타자 데이터 읽어와 하나의 데이터프레임으로 합친 후 csv로 저장
+hitter_data = pd.read_csv('C:\\Users\\user\\Desktop\\resources\\baseball_player\\kbo_hitter_data_1982.csv', encoding='euc-kr')
+years = range(1983, 2024)
+for year in years:
+    path = 'C:\\Users\\user\\Desktop\\resources\\baseball_player\\kbo_hitter_data_%d.csv' %year
+    old = pd.read_csv(path, encoding='euc-kr')
+    new = pd.concat([hitter_data, old], ignore_index=True)
+    hitter_data = new
+hitter_data.to_csv('data\\hitter_data.csv', index=None, encoding='euc-kr')
