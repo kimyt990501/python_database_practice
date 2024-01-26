@@ -18,7 +18,7 @@ from IPython.display import set_matplotlib_formats
 set_matplotlib_formats('retina')
 
 # 저장해둔 타자 데이터 읽어오기
-hitter_data = pd.read_csv('C:\\Users\\user\\Desktop\\python_database_practice\\python_database_practice\\data\\hitter_data.csv', encoding='euc-kr')
+hitter_data = pd.read_csv('data\\hitter_data.csv', encoding='euc-kr')
 
 # 선수의 수준과 상관 없는 칼럼, 중복된 칼럼, 결측치가 존재하는 칼럼을 삭제
 hitter_data = hitter_data.drop(['팀명', '선수명', 'WPA', 'WAR2'], axis=1)
