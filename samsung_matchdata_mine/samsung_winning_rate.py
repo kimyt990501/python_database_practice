@@ -71,6 +71,7 @@ wr_2021 = pd.read_csv('C:\\Users\\user\\Desktop\\python_database_practice\\pytho
 wr_2022 = pd.read_csv('C:\\Users\\user\\Desktop\\python_database_practice\\python_database_practice\\samsung_matchdata_mine\\data\samsung_winning_rate\\wr_2022.csv', encoding='euc-kr').astype({'월':'int'})
 wr_2023 = pd.read_csv('C:\\Users\\user\\Desktop\\python_database_practice\\python_database_practice\\samsung_matchdata_mine\\data\samsung_winning_rate\\wr_2023.csv', encoding='euc-kr').astype({'월':'int'})
 
+#wr_2001, wr_2002, wr_2003, wr_2004, wr_2005, wr_2006, wr_2007, wr_2008, wr_2009, wr_2010, wr_2011, wr_2012, wr_2013, wr_2014, wr_2015, 
 wr_01_23 = pd.concat([wr_2001, wr_2002, wr_2003, wr_2004, wr_2005, wr_2006, wr_2007, wr_2008, wr_2009, wr_2010, wr_2011, wr_2012, wr_2013, wr_2014, wr_2015, wr_2016, wr_2017, wr_2018, wr_2019, wr_2020, wr_2021, wr_2022, wr_2023], ignore_index = True)
 #wr_01_23 = wr_01_23.set_index('월')
 wr_01_23.to_csv('C:\\Users\\user\\Desktop\\python_database_practice\\python_database_practice\\samsung_matchdata_mine\\data\samsung_winning_rate\\wr_01_23.csv', encoding='euc-kr')
